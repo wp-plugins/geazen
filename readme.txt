@@ -80,11 +80,14 @@ Entra en tu panel de afiliado de Geazen y solicita aquellos que necesites.
 
 == Changelog ==
 
+= 0.1.1 =
+* Solved minor bugs
+
 = 0.1.0 =
 * First version
 
 == Upgrade Notice ==
 
-= 0.1.0 =
+= 0.1.1 =
 This is a beta version. You may find errors.
 

@@ -73,7 +73,7 @@ echo '<div class="inside">';
 
 						echo '<img style="border:1px solid;padding:2px;color:#DFDFDF;float: left;margin-right:10px;"  src="'.$link->clogo.'" width="80" height="80">';
 						
-						echo '<div style="margin-left:95px;">';
+						echo '<div style="margin-left:95px;width:410px;">';
             
             
             
@@ -90,7 +90,7 @@ echo '<div class="inside">';
               $code = str_replace(chr(10),'',$code);
               $code = str_replace(chr(13),'',$code);
               
-              echo '<a class="button-primary" href="#" onclick="inserta_enlace(\''.addslashes($code).'\');">Insertar enlace</a></p>';
+              echo '<a class="button-primary" href="#" onclick="inserta_enlace(\''.js_encode(utf8_decode($code)).'\');">Insertar enlace</a></p>';
             }
             else
             {
@@ -109,7 +109,16 @@ echo '<div class="inside">';
             
             echo '</div>';
             }
-
+function js_encode($s){ 
+    $texto=''; 
+    $lon=strlen($s); 
+    for($i=0;$i<$lon;++$i){ 
+        $num=ord($s[$i]); 
+        if($num<16) $texto.='\x0'.dechex($num); 
+        else $texto.='\x'.dechex($num); 
+    } 
+    return $texto; 
+} 
 ?>
 
 </div>

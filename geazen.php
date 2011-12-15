@@ -3,7 +3,7 @@
 
 Plugin Name: Geazen
 Description: Plugin para afiliados de <a href="http://www.geazen.es">Geazen Affiliate Network</a>. Permite la generación de enlaces trackeados de las landings de los programas y de todos los productos de los catálogos.
-Version: 0.1.0
+Version: 0.1.1
 Author: Geazen
 Author URI: http://www.geazen.es
 
