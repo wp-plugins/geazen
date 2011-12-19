@@ -77,7 +77,7 @@ Entra en tu panel de afiliado de Geazen y solicita aquellos que necesites.
 4. Products related list
 5. Landing links list
 6. Sample post
-6. Admin dashboard widget
+7. Admin dashboard widget
 
 == Changelog ==
 
