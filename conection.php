@@ -9,33 +9,6 @@ function geazen_conection() {
       $gz_user = get_option('gz_user' );
       $gz_pass = get_option('gz_pass' );
       $gz_aid = get_option('gz_aid' );
-
-          if( isset($_POST['gz_aid'])) {
-
-			          if ($_POST['gz_aid']!='')
-			          {
-			          $gz_user=$_POST['gz_user' ];
-        			  $gz_pass=$_POST['gz_pass' ];
-        			  $gz_aid=$_POST['gz_aid' ];
-			          update_option( 'gz_user', $gz_user );
-			          update_option( 'gz_pass', $gz_pass );
-			          update_option( 'gz_aid', $gz_aid );
-
-
-                 
-			          // Put an settings updated message on the screen
-			          echo '<div id="message" class="updated fade"><p>Los datos fueron actualizados.</p></div>';
-			         }
-			         else
-			         {
-			         	// Put an settings updated message on the screen
-			          echo '<div id="message" class="error fade"><p>Los datos no fueron actualizados. Datos de conexión a Geazen incorrectos.</p></div>';
-			         }
-  
-   
-        }
-                              
-   
           ?>
                  
                  
@@ -94,16 +67,9 @@ jQuery(document).ready(function() {
                  </p></div></div>';
                 }     
          
-echo '      
-<table class="form-table">
+echo '<p4>Introduce a continuación tu usuario y contraseña de afiliado en Geazen.</p>      
+<table>
 <tbody>
-<tr>
-<th style="text-align:left; vertical-align:top;" scope="row">
-<h2>Conexión</h2>
-</th>
-<td>
-</td>  
-</tr>
 
 
 <form id="loginForm" action="'.plugins_url().'/geazen/login.php" method="post" name="loginForm">
@@ -113,41 +79,34 @@ echo '
   <label><strong>Usuario:</strong></label>
 </td>
 <td>  
-  <input id="inputuser" type="text" name="user" onchange="document.getElementById(\'gz_user\').value=document.getElementById(\'inputuser\').value;" value="'.$gz_user.'"/>
+  <input id="inputuser" type="text" name="user"  value="'.$gz_user.'"/>
 <td>
 </tr>
+<tr>
 <td>
   <label><strong>Contraseña:</strong></label>
 </td>
 <td>  
-  <input id="inputpass" type="password" name="password" onblur="document.getElementById(\'gz_pass\').value=document.getElementById(\'inputpass\').value;" value="'.$gz_pass.'"/>
+  <input id="inputpass" type="password" name="password"  value="'.$gz_pass.'"/>
 <td>
+</tr>
+<tr>
 </tr>
 <tr> 
 <td>
 </td>
 <td> 
   
-  <input class="button-secondary" type="submit" name="submit" value="Prueba de conexión" />
+  <input class="button-primary" type="submit" name="submit" value="Conectar" />
   <span>
    <img id="loader" style="display:none;" src="'.plugins_url().'/geazen/images/loader.gif'.'"> <label id="respuesta"></label>
   </span>
-  </td>
+</td>
     
-</tr>  
-</form>  
-<tr>
-<td>
-<form method="post" action="" name="formu">
-<input name="gz_user" id="gz_user" type="hidden" value="'.$gz_user.'">
-<input name="gz_pass" id="gz_pass" type="hidden" value="'.$gz_pass.'">
-<input name="gz_aid" id="gz_aid" type="hidden" value="'.$gz_aid.'">
-</td>
-<td>
-<p><input class="button-primary" type="submit" name="submit" value="Actualizar" /></p>
-</form>
-</td>
 </tr>
+  
+</form>  
+
 </tbody>
 </table>';
 	

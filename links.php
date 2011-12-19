@@ -1,6 +1,7 @@
 <?PHP
 function geazen_links() {
 
+if(get_option ('gz_aid')==''){echo '<div id="message" class="error fade"><p>El plugin Geazen no está configurado correctamente. Visita la <a href="'.get_bloginfo('url').'/wp-admin/admin.php?page=geazen_conection" target="_parent">página de conexión</a></p></div>';}
     if (!current_user_can('manage_options'))  {
       wp_die( __('You do not have sufficient permissions to access this page.') );
     }

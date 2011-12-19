@@ -3,7 +3,7 @@
 
 Plugin Name: Geazen
 Description: Plugin para afiliados de <a href="http://www.geazen.es">Geazen Affiliate Network</a>. Permite la generación de enlaces trackeados de las landings de los programas y de todos los productos de los catálogos.
-Version: 0.1.1
+Version: 0.2.0
 Author: Geazen
 Author URI: http://www.geazen.es
 
@@ -29,12 +29,11 @@ function geazen_menu() {
   //add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position )
   //add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
   
-  add_menu_page('Geazen', 'Geazen', 'manage_options', 'geazen_conection','geazen_menu',plugins_url().'/geazen/images/logo-menu.png');
-  
-  add_submenu_page('geazen_conection', 'Conexión', 'Conexión', 'manage_options', 'geazen_conection', 'geazen_conection');
-  
-  add_submenu_page('geazen_conection', 'Enlaces de editor', 'Enlaces de editor', 'manage_options', 'geazen_links', 'geazen_links');
-  
+  add_menu_page('Geazen', 'Geazen', 'manage_options', 'geazen_panel','geazen_menu',plugins_url().'/geazen/images/logo-menu.png');
+  add_submenu_page('geazen_panel', 'Panel', 'Panel', 'manage_options', 'geazen_panel', 'geazen_panel');
+  add_submenu_page('geazen_panel', 'Conexión', 'Conexión', 'manage_options', 'geazen_conection', 'geazen_conection');
+  add_submenu_page('geazen_panel', 'Enlaces de editor', 'Enlaces de editor', 'manage_options', 'geazen_links', 'geazen_links');
+  //add_options_page('Geazen', 'Geazen', 'manage_options', 'geazen', 'geazen_options');
 
 }
 //Tinymce
@@ -71,9 +70,8 @@ function add_tinymce_gzplugin_plugin($plugin_array)
 add_action('init', 'tinymce_gzplugin_addbuttons');
 
 
-
+include('panel.php');
 include('conection.php');
-
 include('links.php');
 include('dashboard.php');
 
@@ -89,7 +87,19 @@ function geazen_activate() {
 geazen_defaults();
     
 }
+
+function geazen_deactivate() {
+
+  remove_action('gz_panel_hook', 'gz_panel_deactivate');
+}
+
+function gz_panel_deactivate() {
+wp_clear_scheduled_hook('gz_panel_hook');
+}
+
+
 register_activation_hook( __FILE__, 'geazen_activate' );
+register_deactivation_hook( __FILE__, 'geazen_deactivate' );
 
 function geazen_defaults(){
 		if(get_option('gz_aid')=='')
@@ -126,5 +136,14 @@ if(count($links_xml)!=0){
 
 }
 }
+
+if ( !wp_next_scheduled('gz_panel_hook') ) {
+wp_schedule_event( time(), 'hourly', 'gz_panel_hook' ); // hourly, daily and twicedaily
+}
+function gz_panel_function() {
+    $xml=simplexml_load_file('http://affiliation.geazen.com/gz-plugin/gz-panel.php?user='.get_option('gz_user' ).'&password='.get_option('gz_pass' ));
+    update_option ('gz_panel_xml',$xml->saveXML());
+}
+add_action('gz_panel_hook', 'gz_panel_function');
 
 ?>

@@ -13,6 +13,7 @@ function geazen_delete_plugin() {
 	delete_option( 'gz_htmlproducts' );
 	delete_option( 'gz_autolink_keywords' );
 	delete_option( 'gz_autolink_htmllinks' );
+	delete_option ('gz_panel_xml');
 
 }
 

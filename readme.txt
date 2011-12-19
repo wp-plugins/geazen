@@ -71,14 +71,22 @@ Entra en tu panel de afiliado de Geazen y solicita aquellos que necesites.
 
 == Screenshots ==
 
-1. Connection settings page
+1. Affiliate panel
 2. HTML links templates page
 3. New products and landings insert links buttons
 4. Products related list
 5. Landing links list
 6. Sample post
+6. Admin dashboard widget
 
 == Changelog ==
+
+= 0.2.0 =
+* New connection page
+* New Affiliate panel
+* Integration of some affiliate stats on admin dashboard
+* Solved minor bugs
+
 
 = 0.1.1 =
 * Solved minor bugs

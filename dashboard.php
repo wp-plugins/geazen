@@ -3,6 +3,35 @@
 // Create the function to output the contents of our Dashboard Widget
 
 function geazen_dashboard_widget_function() {
+if(get_option ('gz_aid')==''){
+echo '<div id="message" class="error fade"><p>El plugin Geazen no está configurado correctamente. Visita la <a href="'.get_bloginfo('url').'/wp-admin/admin.php?page=geazen_conection" target="_parent">página de conexión</a></p></div>';}
+else
+{
+  echo '<h4>Estadísticas</h4><p>Correspondientes a los últimos 30 días</p>';
+  $panel_xml = simplexml_load_string(get_option ('gz_panel_xml'));
+  echo'<table width="100%">
+<tr>
+<td>
+<p>Nº de comisiones pendientes: <strong>'.number_format($panel_xml->pending, 0, ',', '.').'</strong></p>
+<p>Importe de las comisiones pendientes: <strong>'.number_format($panel_xml->cpending, 2, ',', '.').' €</strong></p>
+</td>
+
+<td>
+<img src="'.$panel_xml->impressionsgraph.'&chs=110x62">
+<img src="'.$panel_xml->clicksgraph.'&chs=110x62">
+</td>
+</tr>
+<tr>
+<td>
+<p>Nº de comisiones confirmadas: <strong>'.number_format($panel_xml->confirmed, 0, ',', '.').'</strong></p>
+<p>Importe confirmado y pendiente de pago: <strong>'.number_format($panel_xml->cconfirmed, 2, ',', '.').' €</strong></p></td>
+<td>
+<img src="'.$panel_xml->conversiongraph.'&chs=110x62">
+<img src="'.$panel_xml->commissiongraph.'&chs=110x62">
+</td>
+</tr>
+<tr></table>';
+}
 	// Display whatever it is you want to show
 	echo '<h4>Últimas noticias</h4>';
 $rss = fetch_feed( "http://www.geazen.es/feed" );
@@ -57,6 +86,8 @@ unset($rss);
 // Create the function use in the action hook
 
 function geazen_add_dashboard_widgets() {
+  
+  if(current_user_can('manage_options')){
 	wp_add_dashboard_widget('geazen_dashboard_widget', 'Geazen', 'geazen_dashboard_widget_function');
   // Globalize the metaboxes array, this holds all the widgets for wp-admin
 
@@ -78,11 +109,14 @@ function geazen_add_dashboard_widgets() {
 
 	// Save the sorted array back into the original metaboxes 
 
-	$wp_meta_boxes['dashboard']['normal']['core'] = $sorted_dashboard;	
+	$wp_meta_boxes['dashboard']['normal']['core'] = $sorted_dashboard;
+  }	
 } 
 
 // Hook into the 'wp_dashboard_setup' action to register our other functions
 
+
 add_action('wp_dashboard_setup', 'geazen_add_dashboard_widgets' );
+
 
 ?>
