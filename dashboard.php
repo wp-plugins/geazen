@@ -12,8 +12,8 @@ else
   echo'<table width="100%">
 <tr>
 <td>
-<p>Nº de comisiones pendientes: <strong>'.number_format($panel_xml->pending, 0, ',', '.').'</strong></p>
-<p>Importe de las comisiones pendientes: <strong>'.number_format($panel_xml->cpending, 2, ',', '.').' €</strong></p>
+<p>Nº de comisiones pendientes: <strong>'.number_format((double)$panel_xml->pending, 0, ',', '.').'</strong></p>
+<p>Importe de las comisiones pendientes: <strong>'.number_format((double)$panel_xml->cpending, 2, ',', '.').' €</strong></p>
 </td>
 
 <td>
@@ -23,8 +23,8 @@ else
 </tr>
 <tr>
 <td>
-<p>Nº de comisiones confirmadas: <strong>'.number_format($panel_xml->confirmed, 0, ',', '.').'</strong></p>
-<p>Importe confirmado y pendiente de pago: <strong>'.number_format($panel_xml->cconfirmed, 2, ',', '.').' €</strong></p></td>
+<p>Nº de comisiones confirmadas: <strong>'.number_format((double)$panel_xml->confirmed, 0, ',', '.').'</strong></p>
+<p>Importe confirmado y pendiente de pago: <strong>'.number_format((double)$panel_xml->cconfirmed, 2, ',', '.').' €</strong></p></td>
 <td>
 <img src="'.$panel_xml->conversiongraph.'&chs=110x62">
 <img src="'.$panel_xml->commissiongraph.'&chs=110x62">

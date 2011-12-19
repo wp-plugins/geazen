@@ -54,10 +54,10 @@ echo '
 <tr>
 <td>
 <p>Afiliado: <strong>'.$panel_xml->nombre.'</strong></p>
-<p>Nº de comisiones pendientes: <strong>'.number_format($panel_xml->pending, 0, ',', '.').'</strong></p>
-<p>Importe de las comisiones pendientes: <strong>'.number_format($panel_xml->cpending, 2, ',', '.').' €</strong></p>
-<p>Nº de comisiones confirmadas: <strong>'.number_format($panel_xml->confirmed, 0, ',', '.').'</strong></p>
-<p>Importe confirmado y pendiente de pago: <strong>'.number_format($panel_xml->cconfirmed, 2, ',', '.').' €</strong></p>
+<p>Nº de comisiones pendientes: <strong>'.number_format((double)$panel_xml->pending, 0, ',', '.').'</strong></p>
+<p>Importe de las comisiones pendientes: <strong>'.number_format((double)$panel_xml->cpending, 2, ',', '.').' €</strong></p>
+<p>Nº de comisiones confirmadas: <strong>'.number_format((double)$panel_xml->confirmed, 0, ',', '.').'</strong></p>
+<p>Importe confirmado y pendiente de pago: <strong>'.number_format((double)$panel_xml->cconfirmed, 2, ',', '.').' €</strong></p>
 </td>
 </tr>
 </table></div>
@@ -75,12 +75,12 @@ echo '
 echo'<table width="700">
 <tr>
 <td>
-<p>Impresiones: <strong>'.number_format($panel_xml->totalimpresions, 0, ',', '.').'</strong></p>
-<p>Clicks: <strong>'.number_format($panel_xml->totalclicks, 0, ',', '.').'</strong></p>
+<p>Impresiones: <strong>'.number_format((double)$panel_xml->totalimpresions, 0, ',', '.').'</strong></p>
+<p>Clicks: <strong>'.number_format((double)$panel_xml->totalclicks, 0, ',', '.').'</strong></p>
 </td>
 <td>
-<p>Conversiones: <strong>'.number_format($panel_xml->totalconversions, 0, ',', '.').'</strong></p>
-<p>Comisiones: <strong>'.number_format($panel_xml->totalcommissions, 2, ',', '.').' €</strong></p>
+<p>Conversiones: <strong>'.number_format((double)$panel_xml->totalconversions, 0, ',', '.').'</strong></p>
+<p>Comisiones: <strong>'.number_format((double)$panel_xml->totalcommissions, 2, ',', '.').' €</strong></p>
 </td>
 </tr>
 <tr>
@@ -128,10 +128,10 @@ foreach($panel_xml->transactions->transaction as $transaction)
 	echo '<td>'.$transaction->programa.'</td>';
 	echo '<td>'.$transaction->estado.'</td>';
 	echo '<td>'.$transaction->tipo.'</td>';
-	echo '<td style="text-align:right">'.number_format($transaction->total, 2, ',', '.').' €</td>';
-	echo '<td style="text-align:right"><strong>'.number_format($transaction->comision, 2, ',', '.').' €</strong></td>';
-	echo '<td>'. date_i18n(get_option('date_format') ,strtotime($transaction->fecha)).'</td>';
-	echo '<td>'. date_i18n(get_option('time_format') ,strtotime($transaction->fecha)).'</td>';
+	echo '<td style="text-align:right">'.number_format((double)$transaction->total, 2, ',', '.').' €</td>';
+	echo '<td style="text-align:right"><strong>'.number_format((double)$transaction->comision, 2, ',', '.').' €</strong></td>';
+	echo '<td>'. date_i18n(get_option('date_format') ,strtotime((double)$transaction->fecha)).'</td>';
+	echo '<td>'. date_i18n(get_option('time_format') ,strtotime((double)$transaction->fecha)).'</td>';
 	echo '<td>'.$transaction->canal.'</td>';
 	echo '<td>'.$transaction->data1.'</td>';
 	echo '<tr>';
