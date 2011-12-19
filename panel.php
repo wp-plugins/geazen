@@ -130,8 +130,8 @@ foreach($panel_xml->transactions->transaction as $transaction)
 	echo '<td>'.$transaction->tipo.'</td>';
 	echo '<td style="text-align:right">'.number_format((double)$transaction->total, 2, ',', '.').' €</td>';
 	echo '<td style="text-align:right"><strong>'.number_format((double)$transaction->comision, 2, ',', '.').' €</strong></td>';
-	echo '<td>'. date_i18n(get_option('date_format') ,strtotime((double)$transaction->fecha)).'</td>';
-	echo '<td>'. date_i18n(get_option('time_format') ,strtotime((double)$transaction->fecha)).'</td>';
+	echo '<td>'. date_i18n(get_option('date_format') ,strtotime($transaction->fecha)).'</td>';
+	echo '<td>'. date_i18n(get_option('time_format') ,strtotime($transaction->fecha)).'</td>';
 	echo '<td>'.$transaction->canal.'</td>';
 	echo '<td>'.$transaction->data1.'</td>';
 	echo '<tr>';
